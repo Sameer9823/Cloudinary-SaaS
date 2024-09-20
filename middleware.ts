@@ -8,7 +8,7 @@ const isPublicRoute = createRouteMatcher([
     "/home"
 ])
 const isPublicApiRoute = createRouteMatcher([
-    "/api/videos"
+    "/api/video"
 ])
 
 
