@@ -18,8 +18,8 @@ function Home() {
         throw new Error("Invalid data returned from API")
       }
     }
-    catch (_error) {
-      console.error(error)
+    catch (err) {
+      console.error(err)
       setError("Failed to fetch videos")
       
     } finally {
