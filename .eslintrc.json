@@ -7,6 +7,8 @@
         "varsIgnorePattern": "^_",
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "@typescript-eslint/no-unused-expressions": "error", // Ensure expressions are meaningful
+    "@typescript-eslint/no-explicit-any": "warn" // Warn on 'any', don't error
   }
 }
