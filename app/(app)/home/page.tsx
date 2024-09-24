@@ -18,7 +18,7 @@ function Home() {
         throw new Error("Invalid data returned from API")
       }
     }
-    catch (_error) {
+    catch (error) {
       console.error("failed to load")
       setError("Failed to fetch videos")
       
@@ -33,19 +33,15 @@ function Home() {
   }, [fetchVideos])
 
   const handleDownload = useCallback((url: string, title: string) => {
-    () => {
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", `${title}.mp4`);
-        link.setAttribute("target", "_blank");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-    }
-
-}, [])
-
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", `${title}.mp4`);
+    link.setAttribute("target", "_blank");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
+  
 if(loading){
     return <div>Loading...</div>
 }
