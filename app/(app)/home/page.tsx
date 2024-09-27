@@ -43,7 +43,7 @@ function Home() {
   }, []);
   
 if(loading){
-    return <div>Loading...</div>
+    return <div className='bg-gradient-to-r from-purple-500 via-teal-500 to-red-500 text-transparent bg-clip-text'>Loading...</div>
 }
     
   return (
