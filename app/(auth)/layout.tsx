@@ -12,7 +12,7 @@ import {
   LayoutDashboardIcon,
   Share2Icon,
   UploadIcon,
-  ImageIcon,
+  Bot,
 } from "lucide-react";
 
 const sidebarItems = [
@@ -20,6 +20,7 @@ const sidebarItems = [
   { href: "/home", icon: LayoutDashboardIcon, label: "Home Page" },
   { href: "/social-share", icon: Share2Icon, label: "Social Share" },
   { href: "/video-upload", icon: UploadIcon, label: "Video Upload" },
+  { href: "/cloudGPT", icon: Bot, label: "CloudGPT" },
 ];
 
 export default function AppLayout({
@@ -64,7 +65,7 @@ export default function AppLayout({
             </div>
             <div className="flex-1">
               <Link href="/" onClick={handleLogoClick}>
-                <div className="btn btn-ghost normal-case lg:text-2xl font-bold tracking-tight cursor-pointer text-lg">
+              <div className="btn btn-ghost normal-case lg:text-2xl font-bold tracking-tight cursor-pointer text-lg bg-gradient-to-r from-orange-500 via-indigo-500 to-green-500 text-transparent bg-clip-text">
                   Cloudinary Showcase
                 </div>
               </Link>

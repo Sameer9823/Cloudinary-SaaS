@@ -12,14 +12,14 @@ import {
   LayoutDashboardIcon,
   Share2Icon,
   UploadIcon,
-  ImageIcon,
+  Bot,
 } from "lucide-react";
 
 const sidebarItems = [
-  // { href: "/", icon: ImageIcon, label: "Upload Image" },
   { href: "/home", icon: LayoutDashboardIcon, label: "Home Page" },
   { href: "/social-share", icon: Share2Icon, label: "Social Share" },
   { href: "/video-upload", icon: UploadIcon, label: "Video Upload" },
+  { href: "/cloudGPT", icon: Bot, label: "CloudGPT" },
 ];
 
 export default function AppLayout({
