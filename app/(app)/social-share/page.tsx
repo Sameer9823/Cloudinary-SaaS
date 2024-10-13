@@ -76,7 +76,7 @@ export default function SocialShare(){
 
   return(
     <div className="container mx-auto p-4 max-w-4xl">
-    <h1 className="text-3xl font-bold mb-6 text-center">
+    <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-orange-500 via-indigo-500 to-green-500 text-transparent bg-clip-text">
       Social Media Image Creator
     </h1>
 
