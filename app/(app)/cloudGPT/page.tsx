@@ -110,7 +110,7 @@ export default function Home() {
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`p-3 rounded-lg max-w-[80%] ${
+              className={`p-3 rounded-lg lg:max-w-[90%] max-w-[100%] ${
                 message.type === "user"
                   ? "bg-blue-500 text-white self-end"
                   : "bg-gray-700 text-white self-start"
