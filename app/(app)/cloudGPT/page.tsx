@@ -14,7 +14,6 @@ export default function Home() {
   const [generatingAnswer, setGeneratingAnswer] = useState<boolean>(false);
   const messageEndRef = useRef<HTMLDivElement>(null);
 
-  const API_KEY = "AIzaSyC4It3QhWfSlMDjoFVQv3gay94Y35-ZhkY"; // Replace with your actual API key
 
   const loadingQuotes = [
     "Good things take time!",
@@ -54,7 +53,7 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.NEXT_PUBLIC_CHAT_API_KEY}`,
         {
           contents: [{ parts: [{ text: question }] }],
         }
