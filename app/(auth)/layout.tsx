@@ -67,7 +67,7 @@ export default function AppLayout({
             <div className="flex-1">
               <Link href="/" onClick={handleLogoClick}>
               <div className="btn btn-ghost normal-case lg:text-2xl font-bold tracking-tight cursor-pointer text-lg bg-gradient-to-r from-orange-500 via-indigo-500 to-green-500 text-transparent bg-clip-text">
-                  Cloudinary Showcase
+                  AI SAAS
                 </div>
               </Link>
             </div>
