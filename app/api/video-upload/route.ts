@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
             !process.env.CLOUDINARY_API_SECRET
         ) {
             return NextResponse.json({
-                error: "Cloudinary credentials not found",
+                error: "Cloudinary credential not found",
             }, { status: 500 });
         }
 
