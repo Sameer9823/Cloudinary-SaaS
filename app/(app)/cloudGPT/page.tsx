@@ -53,7 +53,7 @@ export default function Home() {
 
     try {
       const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.NEXT_PUBLIC_CHAT_API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyA5isHdIscq9RUDiPVgdqQuaeMDxV8RZgY`,
         {
           contents: [{ parts: [{ text: question }] }],
         }
