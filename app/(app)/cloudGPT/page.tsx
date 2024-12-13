@@ -2,18 +2,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-// Define the type for messages
 type Message = {
   type: "user" | "bot";
   text: string;
 };
 
 export default function Home() {
-  const [question, setQuestion] = useState<string>(""); // Question is a string
-  const [messages, setMessages] = useState<Message[]>([]); // Messages is an array of Message objects
+  const [question, setQuestion] = useState<string>("");
+  const [messages, setMessages] = useState<Message[]>([]);
   const [generatingAnswer, setGeneratingAnswer] = useState<boolean>(false);
   const messageEndRef = useRef<HTMLDivElement>(null);
-
 
   const loadingQuotes = [
     "Good things take time!",
@@ -25,20 +23,18 @@ export default function Home() {
 
   const randomQuote = loadingQuotes[Math.floor(Math.random() * loadingQuotes.length)];
 
-  // Load history from localStorage on mount
   useEffect(() => {
     const savedMessages = JSON.parse(localStorage.getItem("chatHistory") || "[]") as Message[];
     if (savedMessages) setMessages(savedMessages);
   }, []);
 
-  // Save history to localStorage when messages change
   useEffect(() => {
     localStorage.setItem("chatHistory", JSON.stringify(messages));
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   function cleanBotResponse(text: string) {
-    return text.replace(/\*/g, ""); // Remove unwanted stars or markdown symbols
+    return text.replace(/\*/g, "");
   }
 
   async function generateAnswer(e: React.FormEvent<HTMLFormElement>) {
@@ -46,17 +42,13 @@ export default function Home() {
     e.preventDefault();
 
     const userMessage: Message = { type: "user", text: question };
-
-    // Add both user message and loading quote at the same time
     setMessages((prev) => [...prev, userMessage, { type: "bot", text: randomQuote }]);
-    setQuestion(""); // Clear the question input
+    setQuestion("");
 
     try {
       const response = await axios.post(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyA5isHdIscq9RUDiPVgdqQuaeMDxV8RZgY`,
-        {
-          contents: [{ parts: [{ text: question }] }],
-        }
+        { contents: [{ parts: [{ text: question }] }] }
       );
 
       const botMessage: Message = {
@@ -64,10 +56,9 @@ export default function Home() {
         text: cleanBotResponse(response.data.candidates[0].content.parts[0].text),
       };
 
-      // Replace the loading message with the actual bot response
       setMessages((prev) => {
         const updatedMessages = [...prev];
-        updatedMessages.pop(); // Remove the loading quote
+        updatedMessages.pop();
         return [...updatedMessages, botMessage];
       });
     } catch (error) {
@@ -78,7 +69,7 @@ export default function Home() {
       };
       setMessages((prev) => {
         const updatedMessages = [...prev];
-        updatedMessages.pop(); // Remove the loading quote
+        updatedMessages.pop();
         return [...updatedMessages, errorMessage];
       });
     }
@@ -97,26 +88,24 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Chat AI Container */}
       <div className="w-full max-w-5xl rounded-lg shadow-2xl bg-gray-800 text-white flex flex-col h-[700px]">
         <div className="bg-gray-700 text-white text-center p-4 rounded-t-lg border-b">
           <h1 className="text-2xl font-bold">GPT</h1>
           <p className="text-sm bg-gradient-to-r from-orange-500 via-indigo-500 to-green-500 text-transparent bg-clip-text">Powered by AI Integrated SAAS</p>
         </div>
 
-        {/* Messages Container */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4 max-h-[600px]">
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`p-3 rounded-lg lg:max-w-[90%] max-w-[100%] ${
+              className={`p-4 rounded-lg lg:max-w-[90%] max-w-[100%] ${
                 message.type === "user"
                   ? "bg-blue-500 text-white self-end"
-                  : "bg-gray-700 text-white self-start"
+                  : "bg-gray-700 text-white self-start shadow-lg"
               }`}
             >
               {message.type === "bot" ? (
-                <pre className="whitespace-pre-wrap leading-relaxed text-[#D1B3FF] font-bold">
+                <pre className="whitespace-pre-wrap leading-relaxed text-justify text-[#D1B3FF] font-mono">
                   {message.text}
                 </pre>
               ) : (
@@ -127,7 +116,6 @@ export default function Home() {
           <div ref={messageEndRef} />
         </div>
 
-        {/* Input Form */}
         <form onSubmit={generateAnswer} className="flex border-t border-gray-600">
           <input
             required
@@ -143,7 +131,11 @@ export default function Home() {
             }`}
             disabled={generatingAnswer}
           >
-            {generatingAnswer ? "..." : "Send"}
+            {generatingAnswer ? (
+              <span className="animate-pulse">•••</span>
+            ) : (
+              "Send"
+            )}
           </button>
         </form>
       </div>
