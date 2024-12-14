@@ -84,7 +84,7 @@ export default function Home() {
           Cloudinary <span className="bg-gradient-to-r from-orange-500 via-indigo-500 to-green-500 text-transparent bg-clip-text">GPT</span>
         </h1>
         <p className="text-lg text-gray-300 mt-2">
-          Engage in Real-Time, Intelligent Conversations
+          Engage in Real-Time, Intelligent Conversation
         </p>
       </div>
 
